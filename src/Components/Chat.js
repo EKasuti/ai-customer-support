@@ -1,7 +1,8 @@
-import { Box, Button, Stack, TextField } from "@mui/material";
+import { Box, Button, IconButton, Stack, TextField } from "@mui/material";
 import { useState } from "react";
 import CustomButton from "./Button";
 import SendIcon from '@mui/icons-material/Send';
+import CloseIcon from '@mui/icons-material/Close';
 
 const ChatComponent = ({onClose}) => {
   const [messages, setMessages] = useState([
@@ -87,7 +88,9 @@ const ChatComponent = ({onClose}) => {
       p={2}
       spacing={3}
     >
-      <CustomButton onClick={onClose} text="Close" type="secondary" />
+      <IconButton onClick={onClose} sx={{ alignSelf: 'flex-end', color: 'white' }}>
+            <CloseIcon />
+          </IconButton>
       <Stack
         direction={"column"}
         spacing={2}

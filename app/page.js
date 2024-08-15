@@ -1,11 +1,36 @@
 "use client";
 import CustomButton from "@/src/Components/Button";
+import ChatComponent from "@/src/Components/Chat";
 import Footer from "@/src/Components/Footer";
 import Navbar from "@/src/Components/Navbar";
-import { Box, Typography } from "@mui/material";
+import { Box, Modal, Typography } from "@mui/material";
+import { useState } from "react";
 
 
 export default function Home() {
+  const [openChat, setOpenChat] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
+  // Handle onClick -> Talk to an agent
+  const handleTalkToAgent = () => {
+    // Open component    
+    setOpenChat(true);
+    if (openMenu) {
+      toggleMenu();
+    }
+  };
+
+  // Handle onClick -> Close Chat
+  const handleCloseChat = () => {
+    setOpenChat(false);
+    if (openMenu) {
+      toggleMenu();
+    }
+  };
+
+  // Toggle Menu
+  const toggleMenu = () => {
+    setOpenMenu(!openMenu);
+  };
   return (
     <Box
       backgroundColor="black"
@@ -47,7 +72,7 @@ export default function Home() {
             <Typography 
               // variant={{ xs: 'h2', sm: 'h3', lg: 'h2' }} 
               sx={{ 
-                fontSize: {xs: '1.25rem', sm: '1.75rem', lg: '1.5rem'},
+                fontSize: {xs: '1.25rem', sm: '1.75rem', lg: '3rem'},
                 marginBottom: 3, 
                 color: 'white', 
                 fontWeight: 'bold',
@@ -59,7 +84,7 @@ export default function Home() {
             <Typography 
               // variant="h4" 
               sx={{ 
-                fontSize: {xs: '1.5rem', sm: '2rem', lg: '1.75rem'},
+                fontSize: {xs: '1.5rem', sm: '2rem', lg: '1.8rem'},
                 marginBottom: 3, 
                 background: 'linear-gradient(45deg, #FF2C2C 0%, #998001 100%)', 
                 
@@ -74,7 +99,7 @@ export default function Home() {
             <Typography 
             // variant="h6" 
               sx={{ 
-                  fontSize: {xs: '1.1rem', sm: '1.125rem', lg: '1.25rem'},
+                  fontSize: {xs: '1.1rem', sm: '1.125rem', lg: '1.5rem'},
                   marginBottom: 4, 
                   color: 'white' 
                 }}>
@@ -84,18 +109,52 @@ export default function Home() {
             </Typography>
 
             <Box sx={{marginBottom: 8}}>
-            <CustomButton text="Join Waitlist" type="primary" onClick={()=> {}}/>
+            <CustomButton text="Talk to an agent" type="primary" onClick={handleTalkToAgent}/>
             </Box>
             
           </Box>
-          <Box sx={{display: 'flex', alignItems:{xs:"center", sm:"right"}}}>
+          {/* <Box sx={{display: 'flex', alignItems:{xs:"center", sm:"right"}}}>
           <img 
             src={"/Images/landing_page.png"} 
             alt="Logo" 
-            style={{ height: {xs: '200px', sm: '400px', lg: '800px'}, marginRight: {xs: '0px', sm: '40px'}}} />
+            // style={{ height: {xs: '200px', sm: '00px', lg: '800px'}, marginRight: {xs: '0px', sm: '60px'}}} />
+            // style={{height:"500px"}}
+            sx={{height: {xs: '200px', sm: '500px', lg: '800px'}, marginRight: {xs: '0px', sm: '60px'}}} />
+          </Box> */}
+          <Box
+            component={"img"}
+            src="/Images/landing_page.png"
+            alt="Landing Page"
+            sx={{
+              height: { xs: '300px', sm: '500px' },
+              marginRight: { xs: '0px', sm: '60px' },
+            }}
+          >
+
           </Box>
         </Box>
       </Box>
+
+      <Modal 
+        open={openChat} 
+        onClose={handleCloseChat}
+      >
+        <Box
+          sx={{
+            position: 'absolute',
+            top: { xs: '50%', sm: '50%' },
+            left: { xs: '50%', sm: '75%' },
+            transform: 'translate(-50%, -50%)',
+            width: { xs: '90%', sm: 500 }, 
+            height: { xs: '90%', sm: 700 },
+            backgroundColor: 'black',
+            overflow: 'hidden',
+            borderRadius: 4,
+          }}
+        >
+          <ChatComponent onClose={handleCloseChat} />
+        </Box>
+      </Modal>
      
      {/* Footer */}
      <Footer/>
