@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { AppBar, Box, IconButton, Modal, Toolbar, Drawer, List } from '@mui/material';
 import CustomButton from './Button';
-import ChatComponent from './Chat';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
-
-
+  const navigate = useNavigate();
 
 
   return (
@@ -26,7 +24,16 @@ const Navbar = () => {
             flexDirection: 'row',
             alignItems: 'center',
           }}>
-        <CustomButton text="Login" type="secondary" onClick={()=> {}} />
+        <CustomButton 
+          text="Login" 
+          type="secondary" 
+          onClick={()=> {navigate('/login')}} 
+        />
+        <CustomButton 
+          text="Signup" 
+          type="secondary" 
+          onClick={()=> {navigate('/signup')}} 
+        />
        </Box>
       </Toolbar>
 
