@@ -1,4 +1,5 @@
-"use client"
+"use client";
+
 import Login from '@/src/Pages/Auth/Login';
 import Signup from '@/src/Pages/Auth/Signup';
 import Dashboard from '@/src/Pages/Dashboard';

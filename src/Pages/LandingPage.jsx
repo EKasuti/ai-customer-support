@@ -1,10 +1,10 @@
-
+"use client"
 import CustomButton from "@/src/Components/Button";
 import ChatComponent from "@/src/Components/Chat";
 import Footer from "@/src/Components/Footer";
 import Navbar from "@/src/Components/Navbar";
 import { Box, Modal, Typography } from "@mui/material";
-import { useState } from "react";
+import React, { useState } from "react";
 
 
 export default function Home() {
